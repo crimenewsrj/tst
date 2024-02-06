@@ -1,0 +1,114 @@
+
+
+- Ajustar as informações no .env
+
+-- INSTALAR NGINX
+
+1. sudo apt update && sudo apt upgrade -y
+
+sudo apt install nginx
+
+sudo systemctl status nginx.service
+
+
+1. sudo systemctl stop apache2       
+2. sudo systemctl disable apache2  
+3. sudo systemctl restart nginx.service   
+
+
+-- INSTALAR PHP VERSÃO 7.4
+
+sudo apt-get update
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+
+
+sudo apt-get install -y php7.4-cli php7.4-common php7.4-mysql php7.4-bcmath php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml
+
+sudo apt-get install php7.4-fpm
+
+php -v
+
+Isso deve mostrar a versão 7.4 do PHP que você acabou de instalar.
+
+-- INSTALAR MYSQL
+
+sudo apt install mysql-server
+
+mysql --version
+
+sudo systemctl start mysql.service
+
+sudo systemctl status mysql.service
+
+mysql
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'SENHA_PARA_O_BANCO_DE_DADOS';
+
+flush privileges;
+
+create database NOME_DO_BANCO_DE_DADOS;
+
+quit;
+
+
+-- Configure o arquivo default na pasta /etc/nginx/sites-available/
+
+
+ sudo service nginx reload
+ sudo systemctl restart nginx
+ sudo systemctl restart php7.4-fpm
+
+
+-- INSTALAR COMPOSER 
+
+sudo apt update
+sudo apt install curl
+sudo apt install php-cli unzip
+sudo curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+composer
+
+DENTRO DA PASTA DO PROJETO RODE OS COMANDOS 
+
+sudo chgrp -R www-data storage bootstrap/cache
+sudo chmod -R ug+rwx storage bootstrap/cache
+sudo chmod -R 777 public/uploaded_file/
+sudo php artisan passport:install
+
+
+- INSTALAR REDIS 
+
+sudo apt update
+sudo apt install redis-server
+sudo systemctl start redis.service
+sudo systemctl status redis.service
+
+- INSTALAR NODE JS
+
+sudo apt install curl 
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+
+source ~/.bashrc   
+
+sudo apt update
+
+nvm install 14.17.0 
+
+nvm use 14.17.0 
+
+-- DENTRO DA PASTA DO PROJETO RODE: 
+
+npm run prod
+
+
+sudo systemctl restart nginx.service   
+
+LOGIN ADMIN 
+
+login: admin@gmail.com
+
+senha: admin123
+
+
